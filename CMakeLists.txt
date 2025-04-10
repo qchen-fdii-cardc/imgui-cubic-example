@@ -48,6 +48,10 @@ set(PROJECT_HEADERS
 # Create executable
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES} ${PROJECT_HEADERS})
 
+# https://bugs.launchpad.net/ubuntu/+source/libsimpleini/+bug/1984015
+# refuse to Non-free ConvertUTF.h
+add_definitions(-DSI_CONVERT_ICU)
+
 # Include directories
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
