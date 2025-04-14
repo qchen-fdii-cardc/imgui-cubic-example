@@ -15,17 +15,11 @@ find_package(GLEW REQUIRED)
 find_package(glfw3 REQUIRED)
 find_package(glm REQUIRED)
 
-# Add ImGui source files
-set(IMGUI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/imgui)
-set(IMGUI_SOURCES
-    ${IMGUI_DIR}/imgui.cpp
-    ${IMGUI_DIR}/imgui_demo.cpp
-    ${IMGUI_DIR}/imgui_draw.cpp
-    ${IMGUI_DIR}/imgui_tables.cpp
-    ${IMGUI_DIR}/imgui_widgets.cpp
-    ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
-    ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
-)
+# Find imgui using pkg-config
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(IMGUI REQUIRED imgui)
+pkg_check_modules(SIMPLEINI REQUIRED simpleini)
+
 
 # Add project source files
 set(PROJECT_SOURCES
@@ -34,7 +28,6 @@ set(PROJECT_SOURCES
     camera.cpp
     cube.cpp
     ui.cpp
-    ${IMGUI_SOURCES}
 )
 
 # Add project header files
@@ -55,9 +48,8 @@ add_definitions(-DSI_CONVERT_ICU)
 # Include directories
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${IMGUI_DIR}
-    ${IMGUI_DIR}/backends
-    ${CMAKE_CURRENT_SOURCE_DIR}/simpleini
+    ${IMGUI_INCLUDE_DIRS}  # 添加IMGUI头文件目录
+    ${SIMPLEINI_INCLUDE_DIRS}  # 添加SimpleIni头文件目录
 )
 
 # Link libraries
@@ -66,6 +58,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     GLEW::GLEW
     glfw
     glm::glm
+    ${IMGUI_LIBRARIES}  # 添加IMGUI库
+    ${SIMPLEINI_LIBRARIES}  # 添加SimpleIni库
 )
 
 # Copy shader files and INI file to build directory

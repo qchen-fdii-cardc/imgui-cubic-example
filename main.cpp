@@ -6,9 +6,9 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <imgui/imgui.h>
-#include <imgui/backends/imgui_impl_glfw.h>
-#include <imgui/backends/imgui_impl_opengl3.h>
+#include <imgui.h>
+#include <backends/imgui_impl_glfw.h>
+#include <backends/imgui_impl_opengl3.h>
 #include <iostream>
 #include <memory>
 #include "shader.h"
@@ -57,7 +57,7 @@ public:
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
         // 创建窗口
-        window = glfwCreateWindow(800, 600, "Shader Demo", nullptr, nullptr);
+        window = glfwCreateWindow(1024, 768, "Shader Demo", nullptr, nullptr);
         if (!window)
         {
             std::cerr << "Failed to create GLFW window" << std::endl;

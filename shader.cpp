@@ -3,6 +3,8 @@
 #include <sstream>
 #include <iostream>
 #include <glm/gtc/type_ptr.hpp>
+#include <GL/glew.h>
+#include <SimpleIni.h>
 
 void Shader::init()
 {
