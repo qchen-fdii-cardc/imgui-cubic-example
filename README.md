@@ -1,5 +1,7 @@
 # OpenGL 骨架程序
 
+[Github Repository](https://github.com/qchen-fdii-cardc/imgui-cubic-example)
+
 一个具有着色器管理和UI控制的现代OpenGL应用程序骨架。
 
 ## 功能特点
